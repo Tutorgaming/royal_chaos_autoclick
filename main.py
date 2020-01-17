@@ -234,14 +234,25 @@ class DoBioGraphyPanAn(object):
         self.select_pan_an()
         result = self.select_difficulty()
         if result:
+            time.sleep(2)
             self.do_challenge()
+            time.sleep(2)
             self.do_enter_fight()
             # Must Wait For Fight Scene
             self.do_skip()
             # Clear Treasure Screen
-            do_treasure_complete = ImageButton("treasure_opened.png")
-            do_treasure_complete.wait_for_button()
-            do_treasure_complete.find_and_click()
+            button = ImageButton("bio_victory.png")
+            result = button.wait_for_button(seconds=10)
+            button.find_and_click()
+            time.sleep(1)
+
+            button = ImageButton("bio_end.png")
+            result = button.wait_for_button(seconds=10)
+            time.sleep(1)
+            button.find_and_click()
+            button = ImageButton("bio_end.png")
+            time.sleep(1)
+
 
         time.sleep(1)
 
@@ -288,15 +299,17 @@ def main():
     # go_battle_tab = GoToBattleTabAction()
     # # # Treasure Hunt 3 Times 
     # treasure_hunt = TreasureHuntAction()
-    # go_battle_tab = GoToBattleTabAction()
+    go_battle_tab = GoToBattleTabAction()
     # # Go Explore Tab
     go_explore_tab = GoToExploreTabAction()
-    # # Go Biography
-    # go_biography = GoToBiographyLandmark()
-    # Do Panan
-    # pan_an_biography = DoBioGraphyPanAn()
+    # # # Go Biography
+    go_biography = GoToBiographyLandmark()
+    # # Do Panan
+    pan_an_biography = DoBioGraphyPanAn()
+   
+    # print result
     go_errand = GoToErrandLandmark() 
-    do_errand = DoErrand()
+    # do_errand = DoErrand()
 
    
 if __name__ == "__main__":
