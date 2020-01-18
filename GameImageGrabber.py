@@ -79,21 +79,21 @@ class GameImageGrabber(object):
         # Stop Window Detection
         self.game_window_detector.is_running = False
  
-if __name__ == "__main__":
-    GRAB = GameImageGrabber()
-    try:
-        while True:
-            frame = GRAB.read()
-            if frame is None:
-                continue
-            else:
-                height, width = frame.shape[:2]
-                show = cv.resize(frame, (width/2, height/2), interpolation = cv.INTER_CUBIC)
-                cv.imshow('Detection Result', show)
-            if cv.waitKey(1) & 0xFF == ord('q') :
-                GRAB.stop()
-                break
-    except KeyboardInterrupt:
-        print "Ctrl-c received! Sending kill to threads..."
-        GRAB.stop()
+# if __name__ == "__main__":
+#     GRAB = GameImageGrabber()
+#     try:
+#         while True:
+#             frame = GRAB.read()
+#             if frame is None:
+#                 continue
+#             else:
+#                 height, width = frame.shape[:2]
+#                 show = cv.resize(frame, (width/2, height/2), interpolation = cv.INTER_CUBIC)
+#                 cv.imshow('Detection Result', show)
+#             if cv.waitKey(1) & 0xFF == ord('q') :
+#                 GRAB.stop()
+#                 break
+#     except KeyboardInterrupt:
+#         print "Ctrl-c received! Sending kill to threads..."
+#         GRAB.stop()
 

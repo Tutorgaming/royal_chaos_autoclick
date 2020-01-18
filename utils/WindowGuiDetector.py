@@ -29,7 +29,7 @@ class WindowGuiDetector(threading.Thread):
         if self.hwnd:
             rect = win32gui.GetWindowRect(self.hwnd)
             x = rect[0]
-            y = rect[1]
+            y = rect[1] + 29
             w = rect[2] - x
             h = rect[3] - y
             return (x, y), w , h
@@ -38,7 +38,7 @@ class WindowGuiDetector(threading.Thread):
     def is_okay(self):
         if not self.is_focused:
             return False
-        return self.pos[0] >= 0 and self.pos[1] >=0 and self.width == 558 and self.height == 1020
+        return self.pos[0] >= 0 and self.pos[1] >=0 #  and self.width == 558 and self.height == 1020
 
     def run(self):
         # Updating the status of the NoxPlayer Focusing !
